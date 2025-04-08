@@ -8,7 +8,7 @@
     "type": "ct",
     "updateable": true,
     "privileged": false,
-    "interface_port": DEFAULT-PORT,
+    "interface_port": 5005,
     "documentation": null,
     "website": "https://github.com/PCJones/UmlautAdaptarr",
     "logo": "LINK TO LOGO",
@@ -16,7 +16,7 @@
     "install_methods": [
         {
             "type": "default",
-            "script": "ct/AppName.sh",
+            "script": "ct/umlautadaptarr.sh",
             "resources": {
                 "cpu": 1,
                 "ram": 512,
