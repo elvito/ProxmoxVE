@@ -39,9 +39,15 @@ function update_script() {
         exit
     fi
 
-    # Crawling the new version and checking whether an update is required
-    RELEASE=$(curl -fsSL [RELEASE_URL] | [PARSE_RELEASE_COMMAND])
-    if [[ "${RELEASE}" != "$(cat /opt/${APP}_version.txt)" ]] || [[ ! -f /opt/${APP}_version.txt ]]; then
+    RELEASE=$(curl -fsSL https://api.github.com/repos/snipe/snipe-it/releases/latest | grep "tag_name" | awk '{print substr($2, 3, length($2)-4) }')
+    if [[ ! -f /opt/${APP}_version.txt ]] || [[ "${RELEASE}" != "$(cat /opt/${APP}_version.txt)" ]]; then
+    msg_info "Updating ${APP} to v${RELEASE}"
+    #DO UPDATE
+    else
+    msg_ok "No update required. ${APP} is already at v${RELEASE}."
+  fi
+  exit
+}
         # Stopping Services
         msg_info "Stopping $APP"
         systemctl stop [SERVICE_NAME]
