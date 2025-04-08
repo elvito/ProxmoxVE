@@ -50,28 +50,13 @@ function update_script() {
 }
         # Stopping Services
         msg_info "Stopping $APP"
-        systemctl stop [SERVICE_NAME]
+        systemctl stop umlautadaptarr.service
         msg_ok "Stopped $APP"
-
-        # Creating Backup
-        msg_info "Creating Backup"
-        tar -czf "/opt/${APP}_backup_$(date +%F).tar.gz" [IMPORTANT_PATHS]
-        msg_ok "Backup Created"
-
-        # Execute Update
-        msg_info "Updating $APP to v${RELEASE}"
-        [UPDATE_COMMANDS]
-        msg_ok "Updated $APP to v${RELEASE}"
 
         # Starting Services
         msg_info "Starting $APP"
-        systemctl start [SERVICE_NAME]
+        systemctl start umlautadaptarr.service
         msg_ok "Started $APP"
-
-        # Cleaning up
-        msg_info "Cleaning Up"
-        rm -rf [TEMP_FILES]
-        msg_ok "Cleanup Completed"
 
         # Last Action
         echo "${RELEASE}" >/opt/${APP}_version.txt
