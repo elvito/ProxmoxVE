@@ -34,7 +34,7 @@ function update_script() {
     check_container_resources
 
     # Check if installation is present | -f for file, -d for folder
-    if [[ ! -f [INSTALLATION_CHECK_PATH] ]]; then
+    if [[ ! -f /opt/umlautadaptarr/appsettings.json ]]; then
         msg_error "No ${APP} Installation Found!"
         exit
     fi
