@@ -10,17 +10,17 @@
     "privileged": false,
     "interface_port": DEFAULT-PORT,
     "documentation": null,
-    "website": "LINK TO WEBSITE",
+    "website": "https://github.com/PCJones/UmlautAdaptarr",
     "logo": "LINK TO LOGO",
-    "description": "Description of the app",
+    "description": "A tool to work around Sonarr, Radarr, Lidarr and Readarrs problems with foreign languages",
     "install_methods": [
         {
             "type": "default",
             "script": "ct/AppName.sh",
             "resources": {
-                "cpu": 2,
-                "ram": 2048,
-                "hdd": 4,
+                "cpu": 1,
+                "ram": 512,
+                "hdd": 2,
                 "os": "debian",
                 "version": "12"
             }
