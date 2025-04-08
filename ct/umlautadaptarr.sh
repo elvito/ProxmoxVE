@@ -29,7 +29,6 @@ function update_script() {
         msg_error "No ${APP} Installation Found!"
         exit
     fi
-
     msg_info "Updating $APP..."
     cd /opt/umlautadaptarr || exit
     git pull origin main
