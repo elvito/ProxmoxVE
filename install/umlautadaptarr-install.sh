@@ -16,58 +16,103 @@ update_os
 
 # Installing Dependencies
 msg_info "Installing Dependencies"
+$STD wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+$STD dpkg -i packages-microsoft-prod.deb
+$STD apt-get update
 $STD apt-get install -y \
-  [PACKAGE_1] \
-  [PACKAGE_2] \
-  [PACKAGE_3]
-msg_ok "Installed Dependencies"
-
-# Template: MySQL Database
-msg_info "Setting up Database"
-DB_NAME=[DB_NAME]
-DB_USER=[DB_USER]
-DB_PASS=$(openssl rand -base64 18 | tr -dc 'a-zA-Z0-9' | head -c13)
-$STD mysql -u root -e "CREATE DATABASE $DB_NAME;"
-$STD mysql -u root -e "CREATE USER '$DB_USER'@'localhost' IDENTIFIED WITH mysql_native_password AS PASSWORD('$DB_PASS');"
-$STD mysql -u root -e "GRANT ALL ON $DB_NAME.* TO '$DB_USER'@'localhost'; FLUSH PRIVILEGES;"
+  curl \
+  unzip \
+  git \
+  dotnet-sdk-8.0 \
+  aspnetcore-runtime-8.0
+  msg_ok "Installed Dependencies"
+  
+# Building & Installing UA
+msg_info "Building & Installing Umlautadaptarr"
+$STD git clone https://github.com/PCJones/UmlautAdaptarr.git /opt/umlautadaptarr
+$STD cd /opt/umlautadaptarr
+$STD dotnet restore
+$STD dotnet build --configuration Release
+msg_ok "Installation completed"
+# Configure appsettings.json
+msg_info "Creating appsettings.json"
+$STD cat <<EOF > /opt/umlautadaptarr/appsettings.json
 {
-    echo "${APPLICATION} Credentials"
-    echo "Database User: $DB_USER"
-    echo "Database Password: $DB_PASS"
-    echo "Database Name: $DB_NAME"
-} >> ~/$APP_NAME.creds
-msg_ok "Set up Database"
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    },
+    "Console": {
+      "TimestampFormat": "yyyy-MM-dd HH:mm:ss::"
+    }
+  },
+  "AllowedHosts": "*",
+  "Kestrel": {
+    "Endpoints": {
+      "Http": {
+        "Url": "http://[::]:5005"
+      }
+    }
+  },
+  "Settings": {
+    "UserAgent": "UmlautAdaptarr/1.0",
+    "UmlautAdaptarrApiHost": "https://umlautadaptarr.pcjones.de/api/v1",
+    "IndexerRequestsCacheDurationInMinutes": 12
+  },
+  "Sonarr": [
+    {
+      "Enabled": true,
+      "Name": "Sonarr",
+      "Host": "http://192.168.1.100:8989",
+      "ApiKey": "dein_sonarr_api_key"
+    }
+  ],
+  "Radarr": [
+    {
+      "Enabled": true,
+      "Name": "Radarr",
+      "Host": "http://192.168.1.101:7878",
+      "ApiKey": "dein_radarr_api_key"
+    }
+  ],
+  "Lidarr": {
+    "Enabled": true,
+    "Host": "http://192.168.1.102:8686",
+    "ApiKey": "dein_lidarr_api_key"
+  },
+  "Readarr": {
+    "Enabled": true,
+    "Host": "http://192.168.1.103:8787",
+    "ApiKey": "dein_readarr_api_key"
+  },
+  "IpLeakTest": {
+    "Enabled": false
+  }
+}
+EOF
+msg_ok "appsettings.json created"
 
-# Temp
-
-# Setup App
-msg_info "Setup ${APPLICATION}"
-RELEASE=$(curl -fsSL https://api.github.com/repos/[REPO]/releases/latest | grep "tag_name" | awk '{print substr($2, 2, length($2)-3) }')
-curl -fsSL -o "${RELEASE}.zip" "https://github.com/[REPO]/archive/refs/tags/${RELEASE}.zip"
-unzip -q "${RELEASE}.zip"
-mv "${APPLICATION}-${RELEASE}/" "/opt/${APPLICATION}"
-# 
-# 
-#
-echo "${RELEASE}" >/opt/${APPLICATION}_version.txt
-msg_ok "Setup ${APPLICATION}"
-
-# Creating Service (if needed)
-msg_info "Creating Service"
-cat <<EOF >/etc/systemd/system/${APPLICATION}.service
+# Set up systemd service for UmlautAdaptarr
+msg_info "Creating systemd Service"   
+$STD cat <<EOF > /etc/systemd/system/umlautadaptarr.service
 [Unit]
-Description=${APPLICATION} Service
+Description=UmlautAdaptarr Service
 After=network.target
 
 [Service]
-ExecStart=[START_COMMAND]
+Type=Core
+WorkingDirectory=/opt/umlautadaptarr
+ExecStart=/usr/bin/dotnet /opt/umlautadaptarr/UmlautAdaptarr/bin/Release/net8.0/UmlautAdaptarr.dll --urls=http://0.0.0.0:5005
 Restart=always
+User=root
+Group=root
+Environment=ASPNETCORE_ENVIRONMENT=Production
 
 [Install]
 WantedBy=multi-user.target
 EOF
-systemctl enable -q --now ${APPLICATION}
-msg_ok "Created Service"
+msg_ok "Created systemd Service"
 
 motd_ssh
 customize
