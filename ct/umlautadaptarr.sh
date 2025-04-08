@@ -39,14 +39,14 @@ function update_script() {
         exit
     fi
 
-    RELEASE=$(curl -fsSL https://api.github.com/repos/snipe/snipe-it/releases/latest | grep "tag_name" | awk '{print substr($2, 3, length($2)-4) }')
-    if [[ ! -f /opt/${APP}_version.txt ]] || [[ "${RELEASE}" != "$(cat /opt/${APP}_version.txt)" ]]; then
-    msg_info "Updating ${APP} to v${RELEASE}"
-    #DO UPDATE
-    else
-    msg_ok "No update required. ${APP} is already at v${RELEASE}."
-  fi
-  exit
+    msg_info "Updating $APP..."
+    cd /opt/umlautadaptarr || exit
+    git pull origin main
+    dotnet restore
+    dotnet build --configuration Release
+    systemctl restart umlautadaptarr
+    msg_ok "$APP has been updated."
+    exit
 }
         # Stopping Services
         msg_info "Stopping $APP"
