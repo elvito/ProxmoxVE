@@ -8,7 +8,7 @@ source <(curl -s https://raw.githubusercontent.com/elvito/ProxmoxVE/refs/heads/m
 # App Default Values
 APP="Umlautadaptarr"
 # Name of the app (e.g. Google, Adventurelog, Apache-Guacamole"
-var_tags="[TAGS]"
+var_tags="arr"
 # Tags for Proxmox VE, maximum 2 pcs., no spaces allowed, separated by a semicolon ; (e.g. database | adblock;dhcp)
 var_cpu="1"
 # Number of cores (1-X) (e.g. 4) - default are 2
