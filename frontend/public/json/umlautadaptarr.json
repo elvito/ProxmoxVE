@@ -1,5 +1,5 @@
 {
-    "name": "Umlautadaptarr",
+    "name": "UmlautAdaptarr",
     "slug": "umlautadaptarr",
     "categories": [
         0
@@ -8,7 +8,7 @@
     "type": "ct",
     "updateable": true,
     "privileged": false,
-    "interface_port": 5005,
+    "interface_port": null,
     "documentation": null,
     "website": "https://github.com/PCJones/UmlautAdaptarr",
     "logo": "LINK TO LOGO",
@@ -28,7 +28,7 @@
     ],
     "default_credentials": {
         "username": "root",
-        "password": "root"
+        "password": null
     },
     "notes": []
 }
