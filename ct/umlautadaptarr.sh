@@ -30,11 +30,11 @@ function update_script() {
         exit
     fi
     msg_info "Updating $APP..."
-    cd /opt/UmlautAdaptarr || exit
-    git pull origin main
-    dotnet restore
-    dotnet build --configuration Release
-    systemctl restart umlautadaptarr
+    $STD cd /opt/UmlautAdaptarr || exit
+    $STD git pull origin main
+    $STD dotnet restore
+    $STD dotnet build --configuration Release
+    $STD systemctl restart umlautadaptarr
     msg_ok "$APP has been updated."
     exit
 }
