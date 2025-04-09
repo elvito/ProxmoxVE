@@ -27,8 +27,8 @@
         }
     ],
     "default_credentials": {
-        "username": root,
-        "password": root
+        "username": "root",
+        "password": null
     },
     "notes": []
 }
