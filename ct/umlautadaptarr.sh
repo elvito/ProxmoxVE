@@ -9,7 +9,7 @@ APP="Umlautadaptarr"
 var_tags="arr"
 var_cpu="1"
 var_ram="512"
-var_disk="2"
+var_disk="4"
 var_os="debian"
 var_version="12"
 var_unprivileged="1"
@@ -25,7 +25,7 @@ function update_script() {
     check_container_resources
 
     # Check if installation is present | -f for file, -d for folder
-    if [[ ! -f /opt/umlautadaptarr/appsettings.json ]]; then
+    if [[ ! -f /opt/umlautadaptarr/Umlautadaptarr/appsettings.json ]]; then
         msg_error "No ${APP} Installation Found!"
         exit
     fi
