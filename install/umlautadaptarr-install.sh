@@ -29,14 +29,14 @@ $STD apt-get install -y \
   
 # Building & Installing UA
 msg_info "Building & Installing Umlautadaptarr"
-$STD git clone https://github.com/PCJones/UmlautAdaptarr.git /opt/umlautadaptarr
-$STD cd /opt/umlautadaptarr
+$STD git clone https://github.com/PCJones/UmlautAdaptarr.git /opt
+$STD cd /opt/Umlautadaptarr
 $STD dotnet restore
 $STD dotnet build --configuration Release
 msg_ok "Installation completed"
 # Configure appsettings.json
 msg_info "Creating appsettings.json"
-$STD cat <<EOF > /opt/umlautadaptarr/Umlautadaptarr/appsettings.json
+$STD cat <<EOF > /opt/Umlautadaptarr/appsettings.json
 {
   "Logging": {
     "LogLevel": {
@@ -103,7 +103,7 @@ After=network.target
 [Service]
 Type=Core
 WorkingDirectory=/opt/umlautadaptarr
-ExecStart=/usr/bin/dotnet /opt/umlautadaptarr/UmlautAdaptarr/bin/Release/net8.0/UmlautAdaptarr.dll --urls=http://0.0.0.0:5005
+ExecStart=/usr/bin/dotnet /opt/UmlautAdaptarr/bin/Release/net8.0/UmlautAdaptarr.dll --urls=http://0.0.0.0:5005
 Restart=always
 User=root
 Group=root
