@@ -95,14 +95,14 @@ msg_ok "appsettings.json created"
 
 # Set up systemd service for UmlautAdaptarr
 msg_info "Creating systemd Service"   
-$STD cat <<EOF > /etc/systemd/system/umlautadaptarr.service
+$STD cat <<EOF >/etc/systemd/system/umlautadaptarr.service
 [Unit]
 Description=UmlautAdaptarr Service
 After=network.target
 
 [Service]
 Type=Core
-WorkingDirectory=/opt/umlautadaptarr
+WorkingDirectory=/opt/Umlautadaptarr
 ExecStart=/usr/bin/dotnet /opt/UmlautAdaptarr/bin/Release/net8.0/UmlautAdaptarr.dll --urls=http://0.0.0.0:5005
 Restart=always
 User=root
