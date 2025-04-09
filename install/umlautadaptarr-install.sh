@@ -16,10 +16,10 @@ update_os
 
 # Installing Dependencies
 msg_info "Installing Dependencies"
-$STD wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
-$STD dpkg -i packages-microsoft-prod.deb
-$STD apt-get update
-$STD apt-get install -y \
+wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+dpkg -i packages-microsoft-prod.deb
+apt-get update
+apt-get install -y \
   curl \
   unzip \
   git \
