@@ -16,10 +16,10 @@ update_os
 
 # Installing Dependencies
 msg_info "Installing Dependencies"
-wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
-dpkg -i packages-microsoft-prod.deb
-apt-get update
-apt-get install -y \
+$STD wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+$STD dpkg -i packages-microsoft-prod.deb
+$STD apt-get update
+$STD apt-get install -y \
   curl \
   unzip \
   git \
@@ -29,14 +29,14 @@ apt-get install -y \
   
 # Building & Installing UA
 msg_info "Building & Installing Umlautadaptarr"
-git clone https://github.com/PCJones/UmlautAdaptarr.git /opt/
-cd /opt/UmlautAdaptarr
-dotnet restore
-dotnet build --configuration Release
+$STD git clone https://github.com/PCJones/UmlautAdaptarr.git /opt/
+$STD cd /opt/UmlautAdaptarr
+$STD dotnet restore
+$STD dotnet build --configuration Release
 msg_ok "Installation completed"
 # Configure appsettings.json
 msg_info "Creating appsettings.json"
- cat <<EOF >/opt/UmlautAdaptarr/appsettings.json
+cat <<EOF >/opt/UmlautAdaptarr/appsettings.json
 {
   "Logging": {
     "LogLevel": {
@@ -62,7 +62,7 @@ msg_info "Creating appsettings.json"
   },
   "Sonarr": [
     {
-      "Enabled": true,
+      "Enabled": false,
       "Name": "Sonarr",
       "Host": "http://192.168.1.100:8989",
       "ApiKey": "dein_sonarr_api_key"
@@ -70,19 +70,19 @@ msg_info "Creating appsettings.json"
   ],
   "Radarr": [
     {
-      "Enabled": true,
+      "Enabled": false,
       "Name": "Radarr",
       "Host": "http://192.168.1.101:7878",
       "ApiKey": "dein_radarr_api_key"
     }
   ],
   "Lidarr": {
-    "Enabled": true,
+    "Enabled": false,
     "Host": "http://192.168.1.102:8686",
     "ApiKey": "dein_lidarr_api_key"
   },
   "Readarr": {
-    "Enabled": true,
+    "Enabled": false,
     "Host": "http://192.168.1.103:8787",
     "ApiKey": "dein_readarr_api_key"
   },
@@ -95,7 +95,7 @@ msg_ok "appsettings.json created"
 
 # Set up systemd service for UmlautAdaptarr
 msg_info "Creating systemd Service"   
- cat <<EOF >/etc/systemd/system/umlautadaptarr.service
+cat <<EOF >/etc/systemd/system/umlautadaptarr.service
 [Unit]
 Description=UmlautAdaptarr Service
 After=network.target
