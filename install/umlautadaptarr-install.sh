@@ -36,7 +36,7 @@ $STD dotnet build --configuration Release
 msg_ok "Installation completed"
 # Configure appsettings.json
 msg_info "Creating appsettings.json"
-$STD cat <<EOF > /opt/umlautadaptarr/appsettings.json
+$STD cat <<EOF > /opt/umlautadaptarr/Umlautadaptarr/appsettings.json
 {
   "Logging": {
     "LogLevel": {
@@ -112,6 +112,9 @@ Environment=ASPNETCORE_ENVIRONMENT=Production
 [Install]
 WantedBy=multi-user.target
 EOF
+systemctl daemon-reload
+systemctl enable umautadaptarr.service
+systemctl start umlautadaptarr
 msg_ok "Created systemd Service"
 
 motd_ssh
