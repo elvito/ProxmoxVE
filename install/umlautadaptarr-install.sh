@@ -36,7 +36,7 @@ dotnet build --configuration Release
 msg_ok "Installation completed"
 # Configure appsettings.json
 msg_info "Creating appsettings.json"
- cat <<EOF > /opt/Umlautadaptarr/appsettings.json
+ cat <<EOF >/opt/Umlautadaptarr/appsettings.json
 {
   "Logging": {
     "LogLevel": {
