@@ -16,10 +16,10 @@ update_os
 
 # Installing Dependencies
 msg_info "Installing Dependencies"
-$STD wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
-$STD dpkg -i packages-microsoft-prod.deb
-$STD apt-get update
-$STD apt-get install -y \
+wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+dpkg -i packages-microsoft-prod.deb
+apt-get update
+apt-get install -y \
   curl \
   unzip \
   git \
@@ -29,14 +29,14 @@ $STD apt-get install -y \
   
 # Building & Installing UA
 msg_info "Building & Installing Umlautadaptarr"
-$STD git clone https://github.com/PCJones/UmlautAdaptarr.git /opt
-$STD cd /opt/Umlautadaptarr
-$STD dotnet restore
-$STD dotnet build --configuration Release
+git clone https://github.com/PCJones/UmlautAdaptarr.git /opt/
+cd /opt/Umlautadaptarr
+dotnet restore
+dotnet build --configuration Release
 msg_ok "Installation completed"
 # Configure appsettings.json
 msg_info "Creating appsettings.json"
-$STD cat <<EOF > /opt/Umlautadaptarr/appsettings.json
+ cat <<EOF > /opt/Umlautadaptarr/appsettings.json
 {
   "Logging": {
     "LogLevel": {
