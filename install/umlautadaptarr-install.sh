@@ -16,10 +16,10 @@ update_os
 
 # Installing Dependencies
 msg_info "Installing Dependencies"
-wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
-dpkg -i packages-microsoft-prod.deb
-apt-get update
-apt-get install -y \
+$STD wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+$STD dpkg -i packages-microsoft-prod.deb
+$STD apt-get update
+$STD apt-get install -y \
   curl \
   unzip \
   git \
@@ -29,8 +29,8 @@ apt-get install -y \
   
 # Building & Installing UA
 msg_info "Building & Installing Umlautadaptarr"
-git clone https://github.com/PCJones/UmlautAdaptarr.git /opt/
-cd /opt/UmlautAdaptarr
+$STD git clone https://github.com/PCJones/UmlautAdaptarr.git /opt/
+$STD cd /opt/UmlautAdaptarr
 $STD dotnet restore
 $STD dotnet build --configuration Release
 msg_ok "Installation completed"
