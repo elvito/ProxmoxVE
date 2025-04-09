@@ -113,7 +113,7 @@ Environment=ASPNETCORE_ENVIRONMENT=Production
 WantedBy=multi-user.target
 EOF
 systemctl daemon-reload
-systemctl enable umautadaptarr.service
+systemctl enable umlautadaptarr.service
 systemctl start umlautadaptarr
 msg_ok "Created systemd Service"
 
