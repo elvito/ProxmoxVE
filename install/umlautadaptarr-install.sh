@@ -95,7 +95,7 @@ msg_ok "appsettings.json created"
 
 # Set up systemd service for UmlautAdaptarr
 msg_info "Creating systemd Service"   
-$STD cat <<EOF >/etc/systemd/system/umlautadaptarr.service
+ cat <<EOF >/etc/systemd/system/umlautadaptarr.service
 [Unit]
 Description=UmlautAdaptarr Service
 After=network.target
