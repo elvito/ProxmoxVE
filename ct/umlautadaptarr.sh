@@ -25,12 +25,12 @@ function update_script() {
     check_container_resources
 
     # Check if installation is present | -f for file, -d for folder
-    if [[ ! -f /opt/Umlautadaptarr/appsettings.json ]]; then
+    if [[ ! -f /opt/UmlautAdaptarr/appsettings.json ]]; then
         msg_error "No ${APP} Installation Found!"
         exit
     fi
     msg_info "Updating $APP..."
-    cd /opt/Umlautadaptarr || exit
+    cd /opt/UmlautAdaptarr || exit
     git pull origin main
     dotnet restore
     dotnet build --configuration Release
