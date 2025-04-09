@@ -76,16 +76,20 @@ cat <<EOF >/opt/UmlautAdaptarr/appsettings.json
       "ApiKey": "dein_radarr_api_key"
     }
   ],
-  "Lidarr": {
-    "Enabled": false,
+  "Lidarr": [
+  {
+    "Enabled": true,
     "Host": "http://192.168.1.102:8686",
     "ApiKey": "dein_lidarr_api_key"
   },
-  "Readarr": {
-    "Enabled": false,
+ ],
+  "Readarr": [
+  {
+    "Enabled": true,
     "Host": "http://192.168.1.103:8787",
     "ApiKey": "dein_readarr_api_key"
   },
+ ],
   "IpLeakTest": {
     "Enabled": false
   }
@@ -112,9 +116,9 @@ Environment=ASPNETCORE_ENVIRONMENT=Production
 [Install]
 WantedBy=multi-user.target
 EOF
-systemctl daemon-reload
-systemctl enable umlautadaptarr.service
-systemctl start umlautadaptarr
+$STD systemctl daemon-reload
+$STD systemctl enable umlautadaptarr.service
+$STD systemctl start umlautadaptarr
 msg_ok "Created systemd Service"
 
 motd_ssh
@@ -122,7 +126,6 @@ customize
 
 # Cleanup
 msg_info "Cleaning up"
-rm -f ${RELEASE}.zip
 $STD apt-get -y autoremove
 $STD apt-get -y autoclean
 msg_ok "Cleaned"
