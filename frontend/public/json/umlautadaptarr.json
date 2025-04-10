@@ -8,7 +8,7 @@
     "type": "ct",
     "updateable": true,
     "privileged": false,
-    "interface_port": null,
+    "interface_port": 5005,
     "documentation": null,
     "website": "https://github.com/PCJones/UmlautAdaptarr",
     "logo": "LINK TO LOGO",
