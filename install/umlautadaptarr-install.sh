@@ -80,14 +80,14 @@ cat <<EOF >/opt/UmlautAdaptarr/appsettings.json
   ],
   "Lidarr": [
   {
-    "Enabled": true,
+    "Enabled": false,
     "Host": "http://192.168.1.102:8686",
     "ApiKey": "dein_lidarr_api_key"
   },
  ],
   "Readarr": [
   {
-    "Enabled": true,
+    "Enabled": false,
     "Host": "http://192.168.1.103:8787",
     "ApiKey": "dein_readarr_api_key"
   },
