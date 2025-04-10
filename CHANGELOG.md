@@ -14,6 +14,26 @@ Exercise vigilance regarding copycat or coat-tailing sites that seek to exploit 
 All LXC instances created using this repository come pre-installed with Midnight Commander, which is a command-line tool (`mc`) that offers a user-friendly file and directory management interface for the terminal environment.
 
 
+## 2025-04-10
+
+### 🆕 New Scripts
+
+  - openproject ([#3637](https://github.com/community-scripts/ProxmoxVE/pull/3637))
+
+### 🚀 Updated Scripts
+
+  - #### 🐞 Bug Fixes
+
+    - Fix: NodeJS Check (Tianji/Docmost) [@MickLesk](https://github.com/MickLesk) ([#3813](https://github.com/community-scripts/ProxmoxVE/pull/3813))
+
+  - #### ✨ New Features
+
+    - change var in ct files to new standard [@MickLesk](https://github.com/MickLesk) ([#3804](https://github.com/community-scripts/ProxmoxVE/pull/3804))
+
+### 💥 Breaking Changes
+
+  - Remove Actualbudget [@michelroegl-brunner](https://github.com/michelroegl-brunner) ([#3801](https://github.com/community-scripts/ProxmoxVE/pull/3801))
+
 ## 2025-04-09
 
 ### 🚀 Updated Scripts
