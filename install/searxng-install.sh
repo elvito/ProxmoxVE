@@ -114,5 +114,3 @@ msg_info "Cleaning up"
 $STD apt-get autoremove
 $STD apt-get autoclean
 msg_ok "Cleaned"
-$STD apt-get autoclean
-msg_ok "Cleaned"
