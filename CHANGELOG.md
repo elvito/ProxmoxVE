@@ -10,15 +10,32 @@
 > [!CAUTION]
 Exercise vigilance regarding copycat or coat-tailing sites that seek to exploit the project's popularity for potentially malicious purposes.
 
+## 2025-08-14
+
+### 🚀 Updated Scripts
+
+  - #### 🔧 Refactor
+
+    - Refactor: Zwave-JS-UI [@tremor021](https://github.com/tremor021) ([#6820](https://github.com/community-scripts/ProxmoxVE/pull/6820))
+
 ## 2025-08-13
 
 ### 🚀 Updated Scripts
 
   - #### 🐞 Bug Fixes
 
+    - emby: fix update output [@MickLesk](https://github.com/MickLesk) ([#6791](https://github.com/community-scripts/ProxmoxVE/pull/6791))
+    - archivebox: fix wrong formatted uv command [@MickLesk](https://github.com/MickLesk) ([#6794](https://github.com/community-scripts/ProxmoxVE/pull/6794))
+    - Outline: Fixes for install and update procedures [@tremor021](https://github.com/tremor021) ([#6806](https://github.com/community-scripts/ProxmoxVE/pull/6806))
+    - Palmr: fix release version parsing // increase RAM [@vhsdream](https://github.com/vhsdream) ([#6800](https://github.com/community-scripts/ProxmoxVE/pull/6800))
     - myspeed: fix update process if no data exist [@MickLesk](https://github.com/MickLesk) ([#6795](https://github.com/community-scripts/ProxmoxVE/pull/6795))
     - crafty-controller: fix update output [@MickLesk](https://github.com/MickLesk) ([#6793](https://github.com/community-scripts/ProxmoxVE/pull/6793))
     - GLPI: Fix timezone command [@tremor021](https://github.com/tremor021) ([#6783](https://github.com/community-scripts/ProxmoxVE/pull/6783))
+
+  - #### ✨ New Features
+
+    - Docker LXC: Add Portainer info [@tremor021](https://github.com/tremor021) ([#6803](https://github.com/community-scripts/ProxmoxVE/pull/6803))
+    - AgentDVR: Added update function [@tremor021](https://github.com/tremor021) ([#6804](https://github.com/community-scripts/ProxmoxVE/pull/6804))
 
 ## 2025-08-12
 
